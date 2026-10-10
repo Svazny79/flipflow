@@ -4,14 +4,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FlipFlow — Step Into Comfort</title>
+<meta name="theme-color" content="#101114">
+<title>FlipFlow | Step Into Comfort</title>
+
 <style>
 :root {
+  --dark: #101114;
+  --cyan: #42dce8;
   --bg: #f7f8fa;
-  --ink: #101114;
-  --muted: #737780;
-  --card: #fff;
-  --accent: #64f5ff;
+  --muted: #727781;
   --line: #e6e8ec;
 }
 * { box-sizing: border-box; }
@@ -19,19 +20,21 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   background: var(--bg);
-  color: var(--ink);
+  color: var(--dark);
   font-family: Arial, Helvetica, sans-serif;
 }
-button, select { font: inherit; }
+button, select, input, textarea { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
 button { cursor: pointer; }
 a { color: inherit; text-decoration: none; }
+
 header {
-  height: 76px;
+  height: 72px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 6%;
-  background: rgba(255,255,255,.96);
+  background: white;
   border-bottom: 1px solid var(--line);
   position: sticky;
   top: 0;
@@ -42,133 +45,150 @@ header {
   font-weight: 950;
   letter-spacing: -1.5px;
 }
-.logo span { color: #00b9c7; }
-nav { display: flex; gap: 27px; align-items: center; }
-nav a { font-size: 13px; font-weight: 700; }
+.logo span { color: #08b9c8; }
+nav { display: flex; gap: 25px; }
+nav a { font-size: 12px; font-weight: 800; }
 nav a:hover { color: #00a8b6; }
-.cart-button, .primary {
-  background: var(--ink);
+.cart-button, .dark-button {
+  background: var(--dark);
   color: white;
   border: 0;
   border-radius: 100px;
-  padding: 13px 20px;
+  padding: 12px 17px;
   font-weight: 800;
 }
-.cart-button span {
-  background: var(--accent);
-  color: #101114;
-  padding: 3px 7px;
+.cart-button b {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
   border-radius: 50%;
-  margin-left: 7px;
+  margin-left: 5px;
+  background: var(--cyan);
+  color: var(--dark);
 }
+
 .hero {
-  background: #101114;
+  background: var(--dark);
   color: white;
-  min-height: 510px;
-  padding: 75px 7%;
+  padding: 65px 7%;
+  min-height: 460px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: center;
   gap: 35px;
+  align-items: center;
   overflow: hidden;
 }
 .eyebrow {
-  text-transform: uppercase;
+  color: #00c8d6;
   font-size: 11px;
   letter-spacing: 3px;
+  text-transform: uppercase;
   font-weight: 900;
-  color: #00c8d6;
 }
 .hero h1 {
-  font-size: clamp(48px, 7vw, 88px);
-  line-height: .94;
-  letter-spacing: -5px;
+  font-size: clamp(48px, 7vw, 85px);
+  line-height: .95;
+  letter-spacing: -4px;
   margin: 20px 0;
 }
-.hero h1 span { color: var(--accent); }
+.hero h1 span { color: var(--cyan); }
 .hero p {
   color: #c3c6cc;
   line-height: 1.8;
-  max-width: 390px;
+  max-width: 400px;
   font-size: 15px;
 }
 .primary {
   display: inline-block;
-  margin-top: 17px;
-  background: var(--accent);
-  color: #101114;
-  padding: 16px 25px;
+  margin-top: 15px;
+  padding: 15px 23px;
+  background: var(--cyan);
+  color: var(--dark);
+  border: 0;
+  border-radius: 100px;
+  font-weight: 900;
 }
 .hero-art {
   position: relative;
-  min-height: 320px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .hero-art img {
-  width: 110%;
-  max-width: 530px;
-  height: 350px;
+  width: 100%;
+  height: 330px;
   object-fit: cover;
-  border-radius: 20px;
-  transform: rotate(-5deg);
-  filter: saturate(.9);
+  border-radius: 18px;
+  transform: rotate(-3deg);
 }
-.hero-tag {
+.hero-label {
   position: absolute;
-  bottom: 5px;
+  bottom: -5px;
   right: 0;
-  padding: 16px 20px;
-  background: var(--accent);
-  color: #101114;
-  border-radius: 12px;
+  background: var(--cyan);
+  color: var(--dark);
+  padding: 14px 17px;
+  border-radius: 8px;
+  font-size: 11px;
   font-weight: 900;
-  transform: rotate(3deg);
+  transform: rotate(2deg);
 }
+
 .perks {
   display: flex;
   justify-content: space-around;
-  gap: 20px;
-  padding: 23px 5%;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 22px 5%;
   background: white;
   border-bottom: 1px solid var(--line);
-  flex-wrap: wrap;
   font-size: 12px;
   font-weight: 800;
 }
-.perks span { display: flex; gap: 8px; align-items: center; }
-.section { padding: 70px 6%; }
+.perks span { display: flex; align-items: center; gap: 8px; }
+
+.section { padding: 65px 6%; }
 .section-head {
   display: flex;
   align-items: end;
   justify-content: space-between;
-  gap: 20px;
+  gap: 18px;
   margin-bottom: 25px;
 }
 .section h2 {
-  font-size: clamp(30px, 4vw, 45px);
+  font-size: clamp(30px, 4vw, 43px);
   letter-spacing: -2px;
   margin: 8px 0;
 }
-.sub { color: var(--muted); font-size: 14px; }
-.filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 25px; }
+.sub { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
 .filter {
-  border: 1px solid #dddfe4;
+  border: 1px solid #dfe1e5;
   background: white;
-  padding: 10px 17px;
+  padding: 10px 16px;
   border-radius: 100px;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 850;
 }
-.filter.active { background: #101114; color: white; border-color: #101114; }
+.filter.active {
+  background: var(--dark);
+  color: white;
+  border-color: var(--dark);
+}
 .grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 23px;
+  gap: 22px;
 }
 .product {
-  background: var(--card);
+  background: white;
   border: 1px solid var(--line);
   border-radius: 15px;
   overflow: hidden;
@@ -176,247 +196,304 @@ nav a:hover { color: #00a8b6; }
 }
 .product:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 35px #1011140d;
+  box-shadow: 0 12px 32px #10111412;
 }
 .product-image {
-  height: 245px;
-  background: #eef0f2;
+  height: 250px;
+  background: #eceeed;
   position: relative;
   overflow: hidden;
 }
 .product-image img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform .3s;
 }
-.product:hover img { transform: scale(1.04); }
 .tag {
   position: absolute;
   top: 12px;
   left: 12px;
-  background: var(--accent);
-  border-radius: 5px;
   padding: 7px 9px;
+  border-radius: 5px;
+  background: var(--cyan);
   font-size: 10px;
-  font-weight: 900;
-  text-transform: uppercase;
+  font-weight: 950;
 }
 .product-info { padding: 17px; }
 .product-info h3 { margin: 0 0 7px; font-size: 17px; }
-.description { color: var(--muted); font-size: 12px; margin: 0 0 13px; }
-.price-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
-.price { font-size: 20px; font-weight: 900; }
-.old-price {
-  color: #9699a0;
-  text-decoration: line-through;
+.description {
+  color: var(--muted);
   font-size: 12px;
-  margin-left: 5px;
+  line-height: 1.6;
+  min-height: 36px;
 }
-.sizes { display: flex; gap: 8px; margin-bottom: 13px; }
-.sizes select {
+.price {
+  font-size: 20px;
+  font-weight: 950;
+  margin: 12px 0;
+}
+.product select {
   width: 100%;
   padding: 11px;
   border: 1px solid var(--line);
-  border-radius: 7px;
+  border-radius: 8px;
   background: white;
+  margin-bottom: 12px;
 }
 .add {
   width: 100%;
-  background: #101114;
-  color: white;
-  border: 0;
   padding: 13px;
-  border-radius: 7px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--dark);
+  color: white;
   font-size: 12px;
   font-weight: 900;
 }
 .add:hover { background: #00a8b6; }
+
 .promo {
-  margin: 10px 6% 70px;
-  background: var(--accent);
+  margin: 0 6% 65px;
+  padding: 40px;
+  background: var(--cyan);
   border-radius: 18px;
-  padding: 43px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
 }
-.promo h2 { margin: 0 0 10px; font-size: 35px; letter-spacing: -1px; }
-.promo p { margin: 0; font-size: 14px; }
-.promo .primary { background: #101114; color: white; }
+.promo h2 { font-size: 34px; margin: 10px 0; }
+.promo p { font-size: 14px; }
+.promo .primary { background: var(--dark); color: white; }
+
 footer {
   padding: 40px 6%;
-  background: #101114;
+  background: var(--dark);
   color: white;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 25px;
 }
-footer p { color: #a7abb3; font-size: 12px; line-height: 1.8; }
-footer a { color: #a7abb3; font-size: 12px; }
-footer a:hover { color: var(--accent); }
-.cart-overlay {
+footer p, footer a {
+  color: #a7abb3;
+  font-size: 12px;
+  line-height: 1.8;
+}
+footer a:hover { color: var(--cyan); }
+
+.overlay {
   display: none;
   position: fixed;
   inset: 0;
+  background: #0009;
   z-index: 30;
-  background: #0008;
 }
-.cart-overlay.open { display: block; }
+.overlay.open { display: block; }
 .drawer {
   position: absolute;
-  right: 0; top: 0;
+  right: 0;
+  top: 0;
   height: 100%;
   width: min(440px, 100%);
+  padding: 24px;
   background: white;
-  padding: 25px;
   display: flex;
   flex-direction: column;
 }
-.drawer-head { display: flex; justify-content: space-between; align-items: center; }
-.drawer-head h2 { font-size: 25px; }
+.drawer-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.drawer-head h2 { font-size: 22px; }
 .close {
-  background: #eee;
+  width: 38px;
+  height: 38px;
   border: 0;
   border-radius: 50%;
-  width: 38px; height: 38px;
-  font-size: 20px;
+  background: #eee;
+  font-size: 22px;
 }
 .cart-items { overflow-y: auto; flex: 1; }
 .cart-item {
-  padding: 16px 0;
-  border-bottom: 1px solid var(--line);
   display: grid;
-  grid-template-columns: 70px 1fr auto;
-  gap: 13px;
+  grid-template-columns: 68px 1fr auto;
+  gap: 12px;
   align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--line);
 }
 .cart-item img {
-  width: 70px; height: 70px;
-  object-fit: cover; border-radius: 8px;
+  width: 68px;
+  height: 68px;
+  border-radius: 8px;
+  object-fit: cover;
 }
-.cart-item h4 { margin: 0 0 6px; font-size: 13px; }
-.cart-item p { margin: 0 0 7px; color: var(--muted); font-size: 12px; }
-.remove { border: 0; background: none; color: #b44; font-size: 12px; }
-.qty { display: flex; align-items: center; gap: 10px; }
-.qty button { border: 1px solid #ddd; background: white; border-radius: 5px; padding: 3px 9px; }
-.cart-bottom { border-top: 1px solid var(--line); padding-top: 20px; }
+.cart-item h4 { font-size: 13px; margin: 0 0 6px; }
+.cart-item p { font-size: 12px; color: var(--muted); margin: 0 0 8px; }
+.qty { display: flex; gap: 10px; align-items: center; font-size: 13px; }
+.qty button {
+  padding: 3px 9px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.remove { border: 0; background: none; color: #a33; font-size: 11px; }
+.empty { text-align: center; color: var(--muted); padding: 55px 10px; line-height: 1.8; }
+.cart-bottom { border-top: 1px solid var(--line); padding-top: 18px; }
 .total { display: flex; justify-content: space-between; font-size: 18px; font-weight: 900; }
-.checkout { width: 100%; margin-top: 15px; padding: 15px; }
-.empty { color: var(--muted); text-align: center; padding: 60px 10px; }
-.notice {
-  position: fixed; bottom: 25px; left: 50%;
-  transform: translateX(-50%);
-  background: #101114; color: white;
-  padding: 14px 22px; border-radius: 50px;
-  font-size: 13px; z-index: 50;
+.checkout { width: 100%; margin-top: 13px; }
+
+.modal {
   display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: #0009;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal.open { display: flex; }
+.modal-card {
+  width: min(480px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 25px;
+  background: white;
+  border-radius: 18px;
+}
+.modal-card label {
+  display: block;
+  margin: 13px 0 6px;
+  font-size: 12px;
+  font-weight: 800;
+}
+.modal-card input, .modal-card textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.modal-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.fine { font-size: 11px; color: var(--muted); line-height: 1.6; }
+.notice {
+  display: none;
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 90%;
+  z-index: 50;
+  padding: 13px 20px;
+  border-radius: 100px;
+  background: var(--dark);
+  color: white;
+  text-align: center;
+  font-size: 13px;
 }
 .notice.show { display: block; }
-@media (max-width: 850px) {
-  .hero { grid-template-columns: 1fr; padding: 55px 7%; }
-  .hero-art { min-height: 250px; }
-  .hero-art img { height: 270px; }
+
+@media(max-width:850px) {
+  .hero { grid-template-columns: 1fr; padding: 50px 7%; }
+  .hero-art img { height: 280px; }
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  nav { gap: 12px; }
 }
-@media (max-width: 560px) {
-  header { padding: 0 4%; height: 67px; }
+@media(max-width:560px) {
+  header { height: 65px; padding: 0 4%; }
   .logo { font-size: 21px; }
-  nav a { display: none; }
-  .cart-button { padding: 11px 13px; font-size: 12px; }
+  nav { display: none; }
+  .cart-button { padding: 10px 12px; font-size: 12px; }
   .hero h1 { letter-spacing: -3px; }
-  .grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .hero-art img { height: 230px; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .product-image { height: 155px; }
   .product-info { padding: 11px; }
   .product-info h3 { font-size: 14px; }
-  .price { font-size: 16px; }
-  .old-price { font-size: 10px; margin-left: 2px; }
-  .description { line-height: 1.5; }
-  .section { padding: 45px 4%; }
+  .price { font-size: 17px; }
+  .description { font-size: 11px; }
+  .section { padding: 43px 4%; }
   .section-head { align-items: start; flex-direction: column; }
-  .promo { margin: 0 4% 45px; padding: 25px; flex-direction: column; align-items: start; }
+  .promo { margin: 0 4% 42px; padding: 25px; flex-direction: column; align-items: start; }
   .promo h2 { font-size: 28px; }
-  .perks { justify-content: flex-start; padding: 20px 5%; }
-  footer { padding: 35px 5%; }
+  .perks { justify-content: flex-start; padding: 18px 5%; }
+  footer { padding: 32px 5%; }
 }
 </style>
 </head>
+
 <body>
 
 <header>
   <a class="logo" href="#">FLIP<span>FLOW</span></a>
   <nav>
-    <a href="#shop">SHOP ALL</a>
-    <a href="#shop" onclick="setFilter('Everyday')">EVERYDAY</a>
-    <a href="#shop" onclick="setFilter('Sport')">SPORT</a>
+    <a href="#">HOME</a>
+    <a href="#shop">SHOP</a>
+    <a href="#about">ABOUT</a>
+    <a href="#contact">CONTACT</a>
   </nav>
   <button class="cart-button" onclick="toggleCart(true)">
-    BAG <span id="cart-count">0</span>
+    BAG <b id="cart-count">0</b>
   </button>
 </header>
 
 <main>
-  <section class="hero">
-    <div>
-      <div class="eyebrow">Your new everyday essential</div>
-      <h1>GOOD VIBES.<br>BETTER <span>SLIDES.</span></h1>
-      <p>Meet your new favorite pair. Clean designs, cloud-like comfort, and a fresh look for wherever life takes you.</p>
-      <a class="primary" href="#shop">SHOP THE COLLECTION ↗</a>
-    </div>
-    <div class="hero-art">
-      <img
-        src="https://images.unsplash.com/photo-1603487742131-4160ec999306?auto=format&fit=crop&w=1000&q=85"
-        alt="Casual footwear collection">
-      <div class="hero-tag">YOUR NEXT FAVORITE PAIR.</div>
-    </div>
-  </section>
+<section class="hero">
+  <div>
+    <div class="eyebrow">Premium slides for everyday life</div>
+    <h1>STEP INTO<br><span>COMFORT.</span></h1>
+    <p>
+      Meet your new favorite pair. Original designs, cushioned style,
+      and fresh colors for wherever life takes you.
+    </p>
+    <a class="primary" href="#shop">SHOP THE COLLECTION ↗</a>
+  </div>
+  <div class="hero-art">
+    <img id="hero-image" alt="Original FlipFlow slide designs">
+    <div class="hero-label">YOUR NEXT FAVORITE PAIR.</div>
+  </div>
+</section>
 
-  <div class="perks">
-    <span>✦ EVERYDAY COMFORT</span>
-    <span>↗ FRESH STYLES</span>
-    <span>♡ MADE FOR YOUR FLOW</span>
-    <span>✓ EASY ONLINE SHOPPING</span>
+<div class="perks">
+  <span>✦ EVERYDAY COMFORT</span>
+  <span>↗ ORIGINAL STYLES</span>
+  <span>♡ MADE FOR YOUR FLOW</span>
+  <span>✓ EASY ONLINE SHOPPING</span>
+</div>
+
+<section class="section" id="shop">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">The collection</div>
+      <h2>FIND YOUR FLOW.</h2>
+      <div class="sub">Six original styles. Find your favorite pair.</div>
+    </div>
+    <div class="sub" id="product-count">6 styles</div>
   </div>
 
-  <section class="section" id="shop">
-    <div class="section-head">
-      <div>
-        <div class="eyebrow">The collection</div>
-        <h2>FIND YOUR FLOW.</h2>
-        <div class="sub">Pick your pair. Choose your size. You're good to go.</div>
-      </div>
-      <div class="sub" id="product-count">6 styles</div>
-    </div>
+  <div class="filters">
+    <button class="filter active" data-filter="All" onclick="setFilter('All')">ALL SLIDES</button>
+    <button class="filter" data-filter="Everyday" onclick="setFilter('Everyday')">EVERYDAY</button>
+    <button class="filter" data-filter="Sport" onclick="setFilter('Sport')">SPORT</button>
+    <button class="filter" data-filter="Premium" onclick="setFilter('Premium')">PREMIUM</button>
+  </div>
 
-    <div class="filters">
-      <button class="filter active" onclick="setFilter('All',this)">ALL SLIDES</button>
-      <button class="filter" onclick="setFilter('Everyday',this)">EVERYDAY</button>
-      <button class="filter" onclick="setFilter('Sport',this)">SPORT</button>
-      <button class="filter" onclick="setFilter('Premium',this)">PREMIUM</button>
-    </div>
+  <div class="grid" id="products"></div>
+</section>
 
-    <div class="grid" id="products"></div>
-  </section>
-
-  <section class="promo">
-    <div>
-      <div class="eyebrow">Your daily rotation starts here</div>
-      <h2>ONE STEP. ALL DAY.</h2>
-      <p>Find the slides that fit your style.</p>
-    </div>
-    <a class="primary" href="#shop">EXPLORE THE DROPS ↗</a>
-  </section>
+<section class="promo" id="about">
+  <div>
+    <div class="eyebrow" style="color:#064b51">Style meets comfort</div>
+    <h2>YOUR STYLE. YOUR FLOW.</h2>
+    <p>Original designs for your everyday rotation.</p>
+  </div>
+  <a class="primary" href="#shop">EXPLORE THE COLLECTION ↗</a>
+</section>
 </main>
 
-<footer>
+<footer id="contact">
   <div>
     <a class="logo" href="#">FLIP<span>FLOW</span></a>
     <p>Step into comfort.<br>Find your flow.</p>
@@ -424,17 +501,21 @@ footer a:hover { color: var(--accent); }
   <div>
     <strong>EXPLORE</strong>
     <p><a href="#shop">Shop all slides</a></p>
-    <p><a href="#shop" onclick="setFilter('Everyday')">Everyday collection</a></p>
-    <p><a href="#shop" onclick="setFilter('Sport')">Sport collection</a></p>
+    <p><a href="#about">About FlipFlow</a></p>
+  </div>
+  <div>
+    <strong>CONTACT</strong>
+    <p>Questions about an order?</p>
+    <p>Add your business email here.</p>
   </div>
   <div>
     <strong>FLIPFLOW</strong>
     <p>© <span id="year"></span> FlipFlow</p>
-    <p>Made for your flow.</p>
+    <p>Independent brand concept.</p>
   </div>
 </footer>
 
-<div class="cart-overlay" id="cart-overlay" onclick="if(event.target===this)toggleCart(false)">
+<div class="overlay" id="cart-overlay" onclick="if(event.target===this)toggleCart(false)">
   <aside class="drawer">
     <div class="drawer-head">
       <h2>YOUR BAG <span id="bag-count">(0)</span></h2>
@@ -442,63 +523,215 @@ footer a:hover { color: var(--accent); }
     </div>
     <div class="cart-items" id="cart-items"></div>
     <div class="cart-bottom">
-      <div class="total"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
+      <div class="total">
+        <span>Subtotal</span>
+        <span id="subtotal">$0.00</span>
+      </div>
       <p class="sub">Shipping and taxes calculated at checkout.</p>
       <button class="primary checkout" onclick="checkout()">CONTINUE TO CHECKOUT →</button>
     </div>
   </aside>
 </div>
 
-<div class="notice" id="notice"></div>
+<div class="modal" id="checkout-modal">
+  <div class="modal-card">
+    <div class="drawer-head">
+      <h2>CHECKOUT DEMO</h2>
+      <button class="close" onclick="closeCheckout()">×</button>
+    </div>
+    <p class="sub">
+      This is a demonstration checkout. It does not take payments
+      or submit real orders.
+    </p>
+    <label for="customer-name">Name</label>
+    <input id="customer-name" autocomplete="name" placeholder="Your name">
+
+    <label for="customer-email">Email</label>
+    <input id="customer-email" type="email" autocomplete="email" placeholder="you@example.com">
+
+    <label for="customer-address">Shipping address</label>
+    <textarea id="customer-address" rows="2" placeholder="Street, city, state, ZIP"></textarea>
+
+    <p class="fine" id="checkout-total"></p>
+    <div class="modal-actions">
+      <button class="primary" onclick="placeDemoOrder()">PLACE DEMO ORDER</button>
+      <button class="dark-button" onclick="closeCheckout()">CANCEL</button>
+    </div>
+  </div>
+</div>
+
+<div class="notice" id="notice" role="status" aria-live="polite"></div>
 
 <script>
+// ORIGINAL SLIDE ART
+// These illustrations are built into the HTML; no image folder is needed.
+
+function lighten(hex) {
+  let h = hex.replace("#", "");
+  if (h.length === 3) h = h.split("").map(c => c + c).join("");
+  const n = parseInt(h, 16);
+  const parts = [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  return "#" + parts.map(v =>
+    Math.min(255, Math.round(v + (255 - v) * 0.24))
+      .toString(16).padStart(2, "0")
+  ).join("");
+}
+
+function slideImage(upper, sole, accent, angle = 0) {
+  const svg = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="700" height="500" viewBox="0 0 700 500">
+    <defs>
+      <linearGradient id="bg" x2="0" y2="1">
+        <stop stop-color="#f6f6f2"/>
+        <stop offset="1" stop-color="#dcdedb"/>
+      </linearGradient>
+      <linearGradient id="upper">
+        <stop stop-color="${lighten(upper)}"/>
+        <stop offset="1" stop-color="${upper}"/>
+      </linearGradient>
+      <linearGradient id="sole" x2="0" y2="1">
+        <stop stop-color="${lighten(sole)}"/>
+        <stop offset="1" stop-color="${sole}"/>
+      </linearGradient>
+      <filter id="shadow">
+        <feGaussianBlur stdDeviation="12"/>
+      </filter>
+    </defs>
+    <rect width="700" height="500" rx="20" fill="url(#bg)"/>
+    <ellipse cx="350" cy="390" rx="240" ry="30"
+      fill="#555" opacity=".23" filter="url(#shadow)"/>
+
+    <g transform="translate(30 15) rotate(${angle} 320 250)">
+      <g transform="translate(30 18) rotate(-12 260 250)">
+        <path d="M150 78 Q118 88 125 132 L205 365
+          Q218 403 260 390 L440 335 Q474 323 456 284
+          L350 77 Q338 50 305 58 Z"
+          fill="${sole}" stroke="#000" stroke-opacity=".15" stroke-width="5"/>
+        <path d="M157 85 Q135 96 146 132 L218 350
+          Q230 376 259 365 L425 315 Q450 306 436 278
+          L340 87 Q329 68 305 72 Z" fill="url(#sole)"/>
+        <path d="M135 115 Q215 75 327 88 L397 218
+          Q302 206 190 270 Z"
+          fill="url(#upper)" stroke="${lighten(upper)}"
+          stroke-width="5" stroke-linejoin="round"/>
+        <path d="M155 127 Q225 95 315 101"
+          fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="4"/>
+        <text x="260" y="163" text-anchor="middle"
+          font-family="Arial" font-size="24" font-weight="bold"
+          letter-spacing="6" fill="${accent}">FF</text>
+        <path d="M230 367 Q310 354 418 316"
+          fill="none" stroke="#fff" stroke-opacity=".2" stroke-width="3"/>
+      </g>
+
+      <g transform="translate(300 100) rotate(13 170 200)">
+        <path d="M135 55 Q106 62 113 101 L172 305
+          Q185 340 218 329 L365 282 Q395 273 379 240
+          L300 55 Q288 33 264 38 Z"
+          fill="${sole}" stroke="#000" stroke-opacity=".15" stroke-width="5"/>
+        <path d="M141 62 Q122 72 133 103 L184 292
+          Q194 315 219 307 L352 264 Q375 255 363 234
+          L291 63 Q282 49 262 52 Z" fill="url(#sole)"/>
+        <path d="M122 88 Q193 53 280 65 L335 177
+          Q262 166 166 218 Z"
+          fill="url(#upper)" stroke="${lighten(upper)}"
+          stroke-width="5" stroke-linejoin="round"/>
+        <path d="M143 96 Q201 70 271 77"
+          fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="4"/>
+        <text x="223" y="126" text-anchor="middle"
+          font-family="Arial" font-size="21" font-weight="bold"
+          letter-spacing="5" fill="${accent}">FF</text>
+      </g>
+    </g>
+  </svg>`;
+  return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+}
+
+// SIX ORIGINAL FLIPFLOW DESIGNS
 const products = [
   {
-    id: 1, name: "Cloud Slides", category: "Everyday",
-    price: 24.99, oldPrice: 32.99, tag: "BESTSELLER",
-    color: "Stone / Cream",
-    image: "https://images.unsplash.com/photo-1603487742131-4160ec999306?auto=format&fit=crop&w=700&q=80",
-    description: "Soft comfort for every day."
+    id: 1,
+    name: "Classic Slides",
+    category: "Everyday",
+    price: 34.99,
+    tag: "BESTSELLER",
+    color: "Beige",
+    upper: "#d7c8ad",
+    sole: "#c5b69d",
+    accent: "#6f634f",
+    description: "Clean design. Everyday comfort."
   },
   {
-    id: 2, name: "Flow Sport", category: "Sport",
-    price: 29.99, oldPrice: null, tag: "SPORT",
-    color: "Black",
-    image: "https://images.unsplash.com/photo-1562273138-f46be4ebdf33?auto=format&fit=crop&w=700&q=80",
-    description: "A sporty, everyday essential."
-  },
-  {
-    id: 3, name: "Pure Slides", category: "Everyday",
-    price: 19.99, oldPrice: null, tag: "",
-    color: "Neutral",
-    image: "https://images.unsplash.com/photo-1603487742131-4160ec999306?auto=format&fit=crop&w=700&q=80",
-    description: "Minimal look. Maximum versatility."
-  },
-  {
-    id: 4, name: "Flow Luxe", category: "Premium",
-    price: 39.99, oldPrice: 49.99, tag: "PREMIUM",
-    color: "Dark / Neutral",
-    image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=700&q=80",
-    description: "Elevated style, everyday ease."
-  },
-  {
-    id: 5, name: "Street Slides", category: "Sport",
-    price: 27.99, oldPrice: null, tag: "NEW",
+    id: 2,
+    name: "Sport Slides",
+    category: "Sport",
+    price: 39.99,
+    tag: "SPORT",
     color: "Black / White",
-    image: "https://images.unsplash.com/photo-1531310197839-ccf54634509e?auto=format&fit=crop&w=700&q=80",
-    description: "Made to move with your day."
+    upper: "#17191b",
+    sole: "#090a0b",
+    accent: "#f0f0eb",
+    description: "Bold style with a cushioned look."
   },
   {
-    id: 6, name: "Essential Slides", category: "Everyday",
-    price: 22.99, oldPrice: null, tag: "",
-    color: "Everyday neutrals",
-    image: "https://images.unsplash.com/photo-1562273138-f46be4ebdf33?auto=format&fit=crop&w=700&q=80",
-    description: "The pair you'll reach for again."
+    id: 3,
+    name: "Element Slides",
+    category: "Premium",
+    price: 34.99,
+    tag: "POPULAR",
+    color: "Olive Green",
+    upper: "#596047",
+    sole: "#3b4030",
+    accent: "#e5e7d7",
+    description: "Earthy colors. A distinctive look."
+  },
+  {
+    id: 4,
+    name: "Pro Slides",
+    category: "Sport",
+    price: 42.99,
+    tag: "PREMIUM",
+    color: "All Black",
+    upper: "#202224",
+    sole: "#090a0b",
+    accent: "#aeb7b8",
+    description: "A sleek, all-black silhouette."
+  },
+  {
+    id: 5,
+    name: "Wave Slides",
+    category: "Everyday",
+    price: 32.99,
+    tag: "NEW",
+    color: "Cream White",
+    upper: "#f0ede3",
+    sole: "#d5d1c7",
+    accent: "#77756c",
+    description: "Minimalist style for every day."
+  },
+  {
+    id: 6,
+    name: "Adventure Slides",
+    category: "Premium",
+    price: 36.99,
+    tag: "",
+    color: "Navy Blue",
+    upper: "#253c54",
+    sole: "#172638",
+    accent: "#dbe5ee",
+    description: "Versatile style, wherever you go."
   }
 ];
 
-let cart = [];
+products.forEach((p, index) => {
+  p.image = slideImage(p.upper, p.sole, p.accent, index % 2 ? 2 : -2);
+});
+
+document.getElementById("hero-image").src =
+  slideImage("#17191b", "#090a0b", "#42dce8", -3);
+
+// PRODUCT FILTERS AND RENDERING
 let activeFilter = "All";
+let cart = [];
 
 function renderProducts() {
   const list = activeFilter === "All"
@@ -508,57 +741,55 @@ function renderProducts() {
   document.getElementById("product-count").textContent =
     list.length + (list.length === 1 ? " style" : " styles");
 
+  document.querySelectorAll(".filter").forEach(button => {
+    button.classList.toggle(
+      "active",
+      button.dataset.filter === activeFilter
+    );
+  });
+
   document.getElementById("products").innerHTML = list.map(p => `
     <article class="product">
       <div class="product-image">
-        <img src="${p.image}" alt="${p.name}" loading="lazy">
+        <img src="${p.image}" alt="${p.color} ${p.name}, original FlipFlow design">
         ${p.tag ? `<span class="tag">${p.tag}</span>` : ""}
       </div>
       <div class="product-info">
         <h3>${p.name}</h3>
-        <p class="description">${p.description}</p>
-        <div class="price-row">
-          <div class="price">
-            $${p.price.toFixed(2)}
-            ${p.oldPrice ? `<span class="old-price">$${p.oldPrice.toFixed(2)}</span>` : ""}
-          </div>
-        </div>
-        <div class="sizes">
-          <select id="size-${p.id}" aria-label="Select size for ${p.name}">
-            <option value="">Choose size</option>
-            <option value="6">US 6</option>
-            <option value="7">US 7</option>
-            <option value="8">US 8</option>
-            <option value="9">US 9</option>
-            <option value="10">US 10</option>
-            <option value="11">US 11</option>
-            <option value="12">US 12</option>
-          </select>
-        </div>
-        <button class="add" onclick="addToCart(${p.id})">ADD TO BAG +</button>
+        <p class="description">${p.description}<br>${p.color}</p>
+        <div class="price">$${p.price.toFixed(2)}</div>
+        <select id="size-${p.id}" aria-label="Choose size for ${p.name}">
+          <option value="">Choose size</option>
+          ${[6,7,8,9,10,11,12].map(size =>
+            `<option value="${size}">US ${size}</option>`
+          ).join("")}
+        </select>
+        <button class="add" onclick="addToCart(${p.id})">
+          ADD TO BAG +
+        </button>
       </div>
     </article>
   `).join("");
 }
 
-function setFilter(category, button) {
+function setFilter(category) {
   activeFilter = category;
-  document.querySelectorAll(".filter").forEach(b => {
-    b.classList.toggle("active", b.textContent.trim() ===
-      (category === "All" ? "ALL SLIDES" : category.toUpperCase()));
-  });
-  if (button) button.classList.add("active");
   renderProducts();
 }
 
+// NOTIFICATIONS
 function notify(message) {
-  const el = document.getElementById("notice");
-  el.textContent = message;
-  el.classList.add("show");
+  const element = document.getElementById("notice");
+  element.textContent = message;
+  element.classList.add("show");
+
   clearTimeout(notify.timer);
-  notify.timer = setTimeout(() => el.classList.remove("show"), 2200);
+  notify.timer = setTimeout(() => {
+    element.classList.remove("show");
+  }, 2400);
 }
 
+// SHOPPING CART
 function addToCart(id) {
   const product = products.find(p => p.id === id);
   const size = document.getElementById("size-" + id).value;
@@ -569,9 +800,15 @@ function addToCart(id) {
     return;
   }
 
-  const existing = cart.find(i => i.id === id && i.size === size);
-  if (existing) existing.qty++;
-  else cart.push({ ...product, size, qty: 1 });
+  const existing = cart.find(item =>
+    item.id === id && item.size === size
+  );
+
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({...product, size, qty: 1});
+  }
 
   updateCart();
   notify(product.name + " added to your bag!");
@@ -579,16 +816,20 @@ function addToCart(id) {
 
 function updateCart() {
   const count = cart.reduce((sum, item) => sum + item.qty, 0);
-  const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  const subtotal = cart.reduce(
+    (sum, item) => sum + item.price * item.qty, 0
+  );
 
   document.getElementById("cart-count").textContent = count;
   document.getElementById("bag-count").textContent = "(" + count + ")";
-  document.getElementById("subtotal").textContent = "$" + subtotal.toFixed(2);
+  document.getElementById("subtotal").textContent =
+    "$" + subtotal.toFixed(2);
 
   const container = document.getElementById("cart-items");
 
   if (!cart.length) {
-    container.innerHTML = '<div class="empty">Your bag is empty.<br><br>Find your flow and add a pair!</div>';
+    container.innerHTML =
+      '<div class="empty">Your bag is empty.<br>Find your flow and add a pair!</div>';
     return;
   }
 
@@ -599,42 +840,93 @@ function updateCart() {
         <h4>${item.name}</h4>
         <p>Size US ${item.size} · $${item.price.toFixed(2)}</p>
         <div class="qty">
-          <button onclick="changeQty(${item.id},'${item.size}',-1)">−</button>
+          <button onclick="changeQty(${item.id}, '${item.size}', -1)">−</button>
           <span>${item.qty}</span>
-          <button onclick="changeQty(${item.id},'${item.size}',1)">+</button>
+          <button onclick="changeQty(${item.id}, '${item.size}', 1)">+</button>
         </div>
       </div>
-      <button class="remove" onclick="removeItem(${item.id},'${item.size}')">Remove</button>
+      <button class="remove"
+        onclick="removeItem(${item.id}, '${item.size}')">Remove</button>
     </div>
   `).join("");
 }
 
 function changeQty(id, size, amount) {
-  const item = cart.find(i => i.id === id && i.size === size);
+  const item = cart.find(p => p.id === id && p.size === size);
   if (!item) return;
+
   item.qty += amount;
-  if (item.qty <= 0) removeItem(id, size);
-  else updateCart();
+
+  if (item.qty <= 0) {
+    removeItem(id, size);
+  } else {
+    updateCart();
+  }
 }
 
 function removeItem(id, size) {
-  cart = cart.filter(i => !(i.id === id && i.size === size));
+  cart = cart.filter(item =>
+    !(item.id === id && item.size === size)
+  );
   updateCart();
 }
 
 function toggleCart(open) {
-  document.getElementById("cart-overlay").classList.toggle("open", open);
+  document.getElementById("cart-overlay")
+    .classList.toggle("open", open);
+
   document.body.style.overflow = open ? "hidden" : "";
 }
 
+// DEMO CHECKOUT
 function checkout() {
   if (!cart.length) {
     notify("Your bag is empty!");
     return;
   }
-  notify("Demo checkout only — connect a payment provider to accept orders.");
+
+  const total = cart.reduce(
+    (sum, item) => sum + item.price * item.qty, 0
+  );
+
+  document.getElementById("checkout-total").textContent =
+    "Demo order subtotal: $" + total.toFixed(2) +
+    ". No payment will be collected.";
+
+  document.getElementById("checkout-modal").classList.add("open");
 }
 
+function closeCheckout() {
+  document.getElementById("checkout-modal")
+    .classList.remove("open");
+}
+
+function placeDemoOrder() {
+  const name = document.getElementById("customer-name").value.trim();
+  const email = document.getElementById("customer-email").value.trim();
+  const address = document.getElementById("customer-address").value.trim();
+
+  if (!name || !email || !address) {
+    notify("Please fill in all checkout fields.");
+    return;
+  }
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    notify("Please enter a valid email address.");
+    return;
+  }
+
+  closeCheckout();
+  toggleCart(false);
+  notify("Demo checkout complete! No real order or payment was created.");
+}
+
+// CLOSE CHECKOUT IF BACKGROUND IS CLICKED
+document.getElementById("checkout-modal").addEventListener("click", event => {
+  if (event.target.id === "checkout-modal") closeCheckout();
+});
+
+// INITIALIZE WEBSITE
 document.getElementById("year").textContent = new Date().getFullYear();
 renderProducts();
 updateCart();
