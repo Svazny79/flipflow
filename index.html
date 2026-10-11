@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -396,30 +395,75 @@ footer a:hover { color: var(--cyan); }
 }
 .notice.show { display: block; }
 
+/* New FlipFlow features */
+.swatches { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin: 0 0 13px; }
+.swatch { width:23px; height:23px; border-radius:50%; border:2px solid white; box-shadow:0 0 0 1px #cfd2d7; padding:0; }
+.swatch.selected { box-shadow:0 0 0 2px var(--dark); }
+.product-actions { display:flex; gap:8px; }
+.product-actions .add { flex:1; }
+.favorite-btn { width:43px; border:1px solid var(--line); border-radius:8px; background:white; font-size:20px; }
+.favorite-btn.saved { color:#e04466; background:#fff1f4; border-color:#ffd3dc; }
+.feature-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+.feature-card { background:white; border:1px solid var(--line); border-radius:16px; padding:25px; }
+.feature-card h3 { margin-top:0; font-size:22px; }
+.feature-card p { color:var(--muted); font-size:13px; line-height:1.7; }
+.ai-open { position:fixed; right:22px; bottom:22px; z-index:25; border:0; border-radius:999px; padding:15px 19px; background:var(--cyan); color:var(--dark); font-weight:900; box-shadow:0 8px 30px #10111430; }
+.ai-panel { display:none; position:fixed; z-index:45; right:22px; bottom:85px; width:min(390px, calc(100vw - 28px)); max-height:min(640px, calc(100vh - 115px)); background:white; border:1px solid var(--line); border-radius:18px; box-shadow:0 20px 65px #0003; overflow:hidden; }
+.ai-panel.open { display:flex; flex-direction:column; }
+.ai-head { background:var(--dark); color:white; padding:16px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.ai-head h3 { margin:0; font-size:16px; }
+.ai-head p { margin:5px 0 0; color:#bdc3ca; font-size:11px; }
+.ai-body { padding:16px; overflow:auto; }
+.ai-message { padding:12px 13px; border-radius:12px; background:#f2f5f6; font-size:13px; line-height:1.6; margin-bottom:12px; }
+.ai-message.user { background:#dffbfc; margin-left:25px; }
+.ai-options { display:flex; gap:7px; flex-wrap:wrap; }
+.ai-options button { border:1px solid #dfe3e6; border-radius:100px; background:white; padding:9px 12px; font-size:12px; font-weight:800; }
+.ai-options button:hover { border-color:#00a8b6; background:#effdfe; }
+.ai-product { display:flex; gap:10px; align-items:center; padding:10px; border:1px solid var(--line); border-radius:12px; margin-top:10px; }
+.ai-product img { width:70px; height:60px; object-fit:cover; border-radius:8px; }
+.ai-product strong { font-size:12px; display:block; }
+.ai-product small { display:block; color:var(--muted); margin:4px 0; }
+.ai-product button { border:0; background:var(--dark); color:white; border-radius:7px; padding:8px 10px; font-size:11px; font-weight:800; }
+.contact-form { display:grid; grid-template-columns:1fr 1fr; gap:13px; }
+.contact-form .field { display:flex; flex-direction:column; gap:6px; }
+.contact-form .full { grid-column:1 / -1; }
+.contact-form label { font-size:12px; font-weight:800; }
+.contact-form input, .contact-form select, .contact-form textarea { width:100%; padding:12px; border:1px solid var(--line); border-radius:8px; background:white; }
+.contact-form textarea { resize:vertical; }
+.support-links { display:flex; gap:9px; flex-wrap:wrap; margin-top:16px; }
+.support-links button { border:1px solid var(--line); background:white; padding:10px 12px; border-radius:9px; font-size:12px; font-weight:800; }
+.shipping-progress { height:7px; background:#e9ecef; border-radius:99px; overflow:hidden; margin:10px 0 7px; }
+.shipping-progress span { display:block; height:100%; width:0; background:var(--cyan); transition:width .25s; }
+
 @media(max-width:850px) {
-  .hero { grid-template-columns: 1fr; padding: 50px 7%; }
-  .hero-art img { height: 280px; }
-  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .feature-grid { grid-template-columns:1fr; }
+  .hero { grid-template-columns:1fr; padding:50px 7%; }
+  .hero-art img { height:280px; }
+  .grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
 }
 @media(max-width:560px) {
-  header { height: 65px; padding: 0 4%; }
-  .logo { font-size: 21px; }
-  nav { display: none; }
-  .cart-button { padding: 10px 12px; font-size: 12px; }
-  .hero h1 { letter-spacing: -3px; }
-  .hero-art img { height: 230px; }
-  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  .product-image { height: 155px; }
-  .product-info { padding: 11px; }
-  .product-info h3 { font-size: 14px; }
-  .price { font-size: 17px; }
-  .description { font-size: 11px; }
-  .section { padding: 43px 4%; }
-  .section-head { align-items: start; flex-direction: column; }
-  .promo { margin: 0 4% 42px; padding: 25px; flex-direction: column; align-items: start; }
-  .promo h2 { font-size: 28px; }
-  .perks { justify-content: flex-start; padding: 18px 5%; }
-  footer { padding: 32px 5%; }
+  .contact-form { grid-template-columns:1fr; }
+  .contact-form .full { grid-column:auto; }
+  .ai-open { right:12px; bottom:12px; padding:13px 15px; }
+  .ai-panel { right:8px; bottom:70px; width:calc(100vw - 16px); }
+  header { height:65px; padding:0 4%; }
+  .logo { font-size:21px; }
+  nav { display:none; }
+  .cart-button { padding:10px 12px; font-size:12px; }
+  .hero h1 { letter-spacing:-3px; }
+  .hero-art img { height:230px; }
+  .grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+  .product-image { height:155px; }
+  .product-info { padding:11px; }
+  .product-info h3 { font-size:14px; }
+  .price { font-size:17px; }
+  .description { font-size:11px; }
+  .section { padding:43px 4%; }
+  .section-head { align-items:start; flex-direction:column; }
+  .promo { margin:0 4% 42px; padding:25px; flex-direction:column; align-items:start; }
+  .promo h2 { font-size:28px; }
+  .perks { justify-content:flex-start; padding:18px 5%; }
+  footer { padding:32px 5%; }
 }
 </style>
 </head>
@@ -431,6 +475,7 @@ footer a:hover { color: var(--cyan); }
   <nav>
     <a href="#">HOME</a>
     <a href="#shop">SHOP</a>
+    <a href="#stylist">AI STYLIST</a>
     <a href="#about">ABOUT</a>
     <a href="#contact">CONTACT</a>
   </nav>
@@ -444,10 +489,7 @@ footer a:hover { color: var(--cyan); }
   <div>
     <div class="eyebrow">Premium slides for everyday life</div>
     <h1>STEP INTO<br><span>COMFORT.</span></h1>
-    <p>
-      Meet your new favorite pair. Original designs, cushioned style,
-      and fresh colors for wherever life takes you.
-    </p>
+    <p>Meet your new favorite pair. Original designs, cushioned style, and fresh colors for wherever life takes you.</p>
     <a class="primary" href="#shop">SHOP THE COLLECTION ↗</a>
   </div>
   <div class="hero-art">
@@ -483,6 +525,31 @@ footer a:hover { color: var(--cyan); }
   <div class="grid" id="products"></div>
 </section>
 
+<section class="section" id="stylist">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">Meet your shopping sidekick</div>
+      <h2>YOUR PERSONAL SLIDE STYLIST.</h2>
+      <div class="sub">Answer a couple of quick questions and get recommendations from the FlipFlow collection.</div>
+    </div>
+    <button class="dark-button" onclick="openAssistant('stylist')">ASK THE AI STYLIST ↗</button>
+  </div>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="eyebrow">01 / FIND YOUR PAIR</div>
+      <h3>Not sure what fits your vibe?</h3>
+      <p>Tell the stylist your budget, preferred look, and how you'll wear your slides. It will recommend a style from the six products in this store.</p>
+      <button class="primary" onclick="openAssistant('stylist')">FIND MY SLIDES →</button>
+    </div>
+    <div class="feature-card">
+      <div class="eyebrow">02 / NEED A HAND?</div>
+      <h3>We're here to help.</h3>
+      <p>Use the contact form for order questions, sizing help, product feedback, or anything else. The demo form prepares an email for you to send.</p>
+      <a class="primary" href="#contact">CONTACT FLIPFLOW →</a>
+    </div>
+  </div>
+</section>
+
 <section class="promo" id="about">
   <div>
     <div class="eyebrow" style="color:#064b51">Style meets comfort</div>
@@ -491,9 +558,44 @@ footer a:hover { color: var(--cyan); }
   </div>
   <a class="primary" href="#shop">EXPLORE THE COLLECTION ↗</a>
 </section>
+
+<section class="section" id="contact">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">Customer care</div>
+      <h2>LET'S TALK FLIPFLOW.</h2>
+      <div class="sub">Have a question, sizing concern, or idea? Send us a message.</div>
+    </div>
+  </div>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <h3>Send us a message</h3>
+      <p>Complete the form and your email app will open with your message ready to send. Add your real business email in the script before launching the store.</p>
+      <form class="contact-form" id="contact-form" onsubmit="submitContact(event)">
+        <div class="field"><label for="contact-name">Your name</label><input id="contact-name" required maxlength="80" placeholder="Name"></div>
+        <div class="field"><label for="contact-email">Email address</label><input id="contact-email" type="email" required maxlength="120" placeholder="you@example.com"></div>
+        <div class="field full"><label for="contact-topic">What can we help with?</label><select id="contact-topic"><option>Order question</option><option>Size and fit</option><option>Product question</option><option>Returns and exchanges</option><option>Feedback or other</option></select></div>
+        <div class="field full"><label for="contact-message">Message</label><textarea id="contact-message" rows="4" required maxlength="1500" placeholder="Tell us how we can help..."></textarea></div>
+        <div class="field full"><button class="primary" type="submit">PREPARE MESSAGE ↗</button><p class="fine">This static HTML demo does not send or store messages by itself. Your email app will handle sending.</p></div>
+      </form>
+    </div>
+    <div class="feature-card">
+      <div class="eyebrow">Quick help</div>
+      <h3>Need an answer right now?</h3>
+      <p>Open the FlipFlow assistant for product recommendations and quick answers to common shopping questions.</p>
+      <div class="support-links">
+        <button onclick="openAssistant('support');supportQuick('sizes')">Sizing help</button>
+        <button onclick="openAssistant('support');supportQuick('shipping')">Shipping info</button>
+        <button onclick="openAssistant('support');supportQuick('returns')">Returns & exchanges</button>
+        <button onclick="openAssistant('stylist')">Find my style</button>
+      </div>
+      <p class="fine" style="margin-top:20px">FlipFlow is currently a storefront concept. Shipping, returns, and order policies must be finalized before taking real orders.</p>
+    </div>
+  </div>
+</section>
 </main>
 
-<footer id="contact">
+<footer id="footer">
   <div>
     <a class="logo" href="#">FLIP<span>FLOW</span></a>
     <p>Step into comfort.<br>Find your flow.</p>
@@ -505,8 +607,8 @@ footer a:hover { color: var(--cyan); }
   </div>
   <div>
     <strong>CONTACT</strong>
-    <p>Questions about an order?</p>
-    <p>Add your business email here.</p>
+    <p><a href="#contact">Contact form & quick help</a></p>
+    <p><a href="#stylist">Ask the AI stylist</a></p>
   </div>
   <div>
     <strong>FLIPFLOW</strong>
@@ -527,6 +629,8 @@ footer a:hover { color: var(--cyan); }
         <span>Subtotal</span>
         <span id="subtotal">$0.00</span>
       </div>
+      <div class="shipping-progress"><span id="shipping-fill"></span></div>
+      <p class="shipping-note" id="shipping-note">Add items to your bag to see your shipping progress.</p>
       <p class="sub">Shipping and taxes calculated at checkout.</p>
       <button class="primary checkout" onclick="checkout()">CONTINUE TO CHECKOUT →</button>
     </div>
@@ -539,19 +643,13 @@ footer a:hover { color: var(--cyan); }
       <h2>CHECKOUT DEMO</h2>
       <button class="close" onclick="closeCheckout()">×</button>
     </div>
-    <p class="sub">
-      This is a demonstration checkout. It does not take payments
-      or submit real orders.
-    </p>
+    <p class="sub">This is a demonstration checkout. It does not take payments or submit real orders.</p>
     <label for="customer-name">Name</label>
     <input id="customer-name" autocomplete="name" placeholder="Your name">
-
     <label for="customer-email">Email</label>
     <input id="customer-email" type="email" autocomplete="email" placeholder="you@example.com">
-
     <label for="customer-address">Shipping address</label>
     <textarea id="customer-address" rows="2" placeholder="Street, city, state, ZIP"></textarea>
-
     <p class="fine" id="checkout-total"></p>
     <div class="modal-actions">
       <button class="primary" onclick="placeDemoOrder()">PLACE DEMO ORDER</button>
@@ -562,10 +660,17 @@ footer a:hover { color: var(--cyan); }
 
 <div class="notice" id="notice" role="status" aria-live="polite"></div>
 
-<script>
-// ORIGINAL SLIDE ART
-// These illustrations are built into the HTML; no image folder is needed.
+<button class="ai-open" onclick="openAssistant('stylist')" aria-label="Open FlipFlow shopping assistant">✦ FlipFlow AI</button>
+<section class="ai-panel" id="ai-panel" aria-label="FlipFlow assistant">
+  <div class="ai-head">
+    <div><h3>✦ FlipFlow Assistant</h3><p>Your style helper · Store-smart recommendations</p></div>
+    <button class="close" onclick="closeAssistant()" aria-label="Close assistant">×</button>
+  </div>
+  <div class="ai-body" id="ai-body" aria-live="polite"></div>
+</section>
 
+<script>
+// Original FlipFlow slide artwork, generated locally as SVG.
 function lighten(hex) {
   let h = hex.replace("#", "");
   if (h.length === 3) h = h.split("").map(c => c + c).join("");
@@ -593,343 +698,208 @@ function slideImage(upper, sole, accent, angle = 0) {
         <stop stop-color="${lighten(sole)}"/>
         <stop offset="1" stop-color="${sole}"/>
       </linearGradient>
-      <filter id="shadow">
-        <feGaussianBlur stdDeviation="12"/>
-      </filter>
+      <filter id="shadow"><feGaussianBlur stdDeviation="12"/></filter>
     </defs>
     <rect width="700" height="500" rx="20" fill="url(#bg)"/>
-    <ellipse cx="350" cy="390" rx="240" ry="30"
-      fill="#555" opacity=".23" filter="url(#shadow)"/>
-
+    <ellipse cx="350" cy="390" rx="240" ry="30" fill="#555" opacity=".23" filter="url(#shadow)"/>
     <g transform="translate(30 15) rotate(${angle} 320 250)">
       <g transform="translate(30 18) rotate(-12 260 250)">
-        <path d="M150 78 Q118 88 125 132 L205 365
-          Q218 403 260 390 L440 335 Q474 323 456 284
-          L350 77 Q338 50 305 58 Z"
-          fill="${sole}" stroke="#000" stroke-opacity=".15" stroke-width="5"/>
-        <path d="M157 85 Q135 96 146 132 L218 350
-          Q230 376 259 365 L425 315 Q450 306 436 278
-          L340 87 Q329 68 305 72 Z" fill="url(#sole)"/>
-        <path d="M135 115 Q215 75 327 88 L397 218
-          Q302 206 190 270 Z"
-          fill="url(#upper)" stroke="${lighten(upper)}"
-          stroke-width="5" stroke-linejoin="round"/>
-        <path d="M155 127 Q225 95 315 101"
-          fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="4"/>
-        <text x="260" y="163" text-anchor="middle"
-          font-family="Arial" font-size="24" font-weight="bold"
-          letter-spacing="6" fill="${accent}">FF</text>
-        <path d="M230 367 Q310 354 418 316"
-          fill="none" stroke="#fff" stroke-opacity=".2" stroke-width="3"/>
+        <path d="M150 78 Q118 88 125 132 L205 365 Q218 403 260 390 L440 335 Q474 323 456 284 L350 77 Q338 50 305 58 Z" fill="${sole}" stroke="#000" stroke-opacity=".15" stroke-width="5"/>
+        <path d="M157 85 Q135 96 146 132 L218 350 Q230 376 259 365 L425 315 Q450 306 436 278 L340 87 Q329 68 305 72 Z" fill="url(#sole)"/>
+        <path d="M135 115 Q215 75 327 88 L397 218 Q302 206 190 270 Z" fill="url(#upper)" stroke="${lighten(upper)}" stroke-width="5" stroke-linejoin="round"/>
+        <path d="M155 127 Q225 95 315 101" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="4"/>
+        <text x="260" y="163" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold" letter-spacing="6" fill="${accent}">FF</text>
+        <path d="M230 367 Q310 354 418 316" fill="none" stroke="#fff" stroke-opacity=".2" stroke-width="3"/>
       </g>
-
       <g transform="translate(300 100) rotate(13 170 200)">
-        <path d="M135 55 Q106 62 113 101 L172 305
-          Q185 340 218 329 L365 282 Q395 273 379 240
-          L300 55 Q288 33 264 38 Z"
-          fill="${sole}" stroke="#000" stroke-opacity=".15" stroke-width="5"/>
-        <path d="M141 62 Q122 72 133 103 L184 292
-          Q194 315 219 307 L352 264 Q375 255 363 234
-          L291 63 Q282 49 262 52 Z" fill="url(#sole)"/>
-        <path d="M122 88 Q193 53 280 65 L335 177
-          Q262 166 166 218 Z"
-          fill="url(#upper)" stroke="${lighten(upper)}"
-          stroke-width="5" stroke-linejoin="round"/>
-        <path d="M143 96 Q201 70 271 77"
-          fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="4"/>
-        <text x="223" y="126" text-anchor="middle"
-          font-family="Arial" font-size="21" font-weight="bold"
-          letter-spacing="5" fill="${accent}">FF</text>
+        <path d="M135 55 Q106 62 113 101 L172 305 Q185 340 218 329 L365 282 Q395 273 379 240 L300 55 Q288 33 264 38 Z" fill="${sole}" stroke="#000" stroke-opacity=".15" stroke-width="5"/>
+        <path d="M141 62 Q122 72 133 103 L184 292 Q194 315 219 307 L352 264 Q375 255 363 234 L291 63 Q282 49 262 52 Z" fill="url(#sole)"/>
+        <path d="M122 88 Q193 53 280 65 L335 177 Q262 166 166 218 Z" fill="url(#upper)" stroke="${lighten(upper)}" stroke-width="5" stroke-linejoin="round"/>
+        <path d="M143 96 Q201 70 271 77" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="4"/>
+        <text x="223" y="126" text-anchor="middle" font-family="Arial" font-size="21" font-weight="bold" letter-spacing="5" fill="${accent}">FF</text>
       </g>
     </g>
   </svg>`;
   return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
 }
 
-// SIX ORIGINAL FLIPFLOW DESIGNS
 const products = [
-  {
-    id: 1,
-    name: "Classic Slides",
-    category: "Everyday",
-    price: 34.99,
-    tag: "BESTSELLER",
-    color: "Beige",
-    upper: "#d7c8ad",
-    sole: "#c5b69d",
-    accent: "#6f634f",
-    description: "Clean design. Everyday comfort."
-  },
-  {
-    id: 2,
-    name: "Sport Slides",
-    category: "Sport",
-    price: 39.99,
-    tag: "SPORT",
-    color: "Black / White",
-    upper: "#17191b",
-    sole: "#090a0b",
-    accent: "#f0f0eb",
-    description: "Bold style with a cushioned look."
-  },
-  {
-    id: 3,
-    name: "Element Slides",
-    category: "Premium",
-    price: 34.99,
-    tag: "POPULAR",
-    color: "Olive Green",
-    upper: "#596047",
-    sole: "#3b4030",
-    accent: "#e5e7d7",
-    description: "Earthy colors. A distinctive look."
-  },
-  {
-    id: 4,
-    name: "Pro Slides",
-    category: "Sport",
-    price: 42.99,
-    tag: "PREMIUM",
-    color: "All Black",
-    upper: "#202224",
-    sole: "#090a0b",
-    accent: "#aeb7b8",
-    description: "A sleek, all-black silhouette."
-  },
-  {
-    id: 5,
-    name: "Wave Slides",
-    category: "Everyday",
-    price: 32.99,
-    tag: "NEW",
-    color: "Cream White",
-    upper: "#f0ede3",
-    sole: "#d5d1c7",
-    accent: "#77756c",
-    description: "Minimalist style for every day."
-  },
-  {
-    id: 6,
-    name: "Adventure Slides",
-    category: "Premium",
-    price: 36.99,
-    tag: "",
-    color: "Navy Blue",
-    upper: "#253c54",
-    sole: "#172638",
-    accent: "#dbe5ee",
-    description: "Versatile style, wherever you go."
-  }
+  {id:1,name:"Classic Slides",category:"Everyday",price:34.99,tag:"BESTSELLER",color:"Beige",upper:"#d7c8ad",sole:"#c5b69d",accent:"#6f634f",description:"Clean design. Everyday comfort."},
+  {id:2,name:"Sport Slides",category:"Sport",price:39.99,tag:"SPORT",color:"Black / White",upper:"#17191b",sole:"#090a0b",accent:"#f0f0eb",description:"Bold style with a cushioned look."},
+  {id:3,name:"Element Slides",category:"Premium",price:34.99,tag:"POPULAR",color:"Olive Green",upper:"#596047",sole:"#3b4030",accent:"#e5e7d7",description:"Earthy colors. A distinctive look."},
+  {id:4,name:"Pro Slides",category:"Sport",price:42.99,tag:"PREMIUM",color:"All Black",upper:"#202224",sole:"#090a0b",accent:"#aeb7b8",description:"A sleek, all-black silhouette."},
+  {id:5,name:"Wave Slides",category:"Everyday",price:32.99,tag:"NEW",color:"Cream White",upper:"#f0ede3",sole:"#d5d1c7",accent:"#77756c",description:"Minimalist style for every day."},
+  {id:6,name:"Adventure Slides",category:"Premium",price:36.99,tag:"",color:"Navy Blue",upper:"#253c54",sole:"#172638",accent:"#dbe5ee",description:"Versatile style, wherever you go."}
 ];
+products.forEach((p,i)=>p.image=slideImage(p.upper,p.sole,p.accent,i%2?2:-2));
+document.getElementById("hero-image").src=slideImage("#17191b","#090a0b","#42dce8",-3);
 
-products.forEach((p, index) => {
-  p.image = slideImage(p.upper, p.sole, p.accent, index % 2 ? 2 : -2);
-});
+let activeFilter="All";
+let cart=[];
+let selectedColors={};
+let favorites=[];
+try { favorites=JSON.parse(localStorage.getItem("flipflow-favorites")||"[]"); } catch(e) { favorites=[]; }
 
-document.getElementById("hero-image").src =
-  slideImage("#17191b", "#090a0b", "#42dce8", -3);
+const colorPalette=[
+  {name:"Black",upper:"#202224",sole:"#090a0b",accent:"#f4f5f2"},
+  {name:"Cream",upper:"#f0ede3",sole:"#d5d1c7",accent:"#77756c"},
+  {name:"Beige",upper:"#d7c8ad",sole:"#c5b69d",accent:"#6f634f"},
+  {name:"Navy",upper:"#253c54",sole:"#172638",accent:"#dbe5ee"},
+  {name:"Olive",upper:"#596047",sole:"#3b4030",accent:"#e5e7d7"},
+  {name:"Cyan",upper:"#42dce8",sole:"#139da9",accent:"#10383c"},
+  {name:"Rose",upper:"#d78d9e",sole:"#b96b7f",accent:"#fff2f5"},
+  {name:"Lilac",upper:"#a89bcf",sole:"#8173ae",accent:"#ffffff"}
+];
+products.forEach(p=>selectedColors[p.id]={name:p.color,upper:p.upper,sole:p.sole,accent:p.accent});
 
-// PRODUCT FILTERS AND RENDERING
-let activeFilter = "All";
-let cart = [];
-
-function renderProducts() {
-  const list = activeFilter === "All"
-    ? products
-    : products.filter(p => p.category === activeFilter);
-
-  document.getElementById("product-count").textContent =
-    list.length + (list.length === 1 ? " style" : " styles");
-
-  document.querySelectorAll(".filter").forEach(button => {
-    button.classList.toggle(
-      "active",
-      button.dataset.filter === activeFilter
-    );
-  });
-
-  document.getElementById("products").innerHTML = list.map(p => `
-    <article class="product">
-      <div class="product-image">
-        <img src="${p.image}" alt="${p.color} ${p.name}, original FlipFlow design">
-        ${p.tag ? `<span class="tag">${p.tag}</span>` : ""}
-      </div>
-      <div class="product-info">
-        <h3>${p.name}</h3>
-        <p class="description">${p.description}<br>${p.color}</p>
-        <div class="price">$${p.price.toFixed(2)}</div>
-        <select id="size-${p.id}" aria-label="Choose size for ${p.name}">
-          <option value="">Choose size</option>
-          ${[6,7,8,9,10,11,12].map(size =>
-            `<option value="${size}">US ${size}</option>`
-          ).join("")}
-        </select>
-        <button class="add" onclick="addToCart(${p.id})">
-          ADD TO BAG +
-        </button>
-      </div>
-    </article>
-  `).join("");
+function getColorOptions(p) {
+  const base={name:p.color,upper:p.upper,sole:p.sole,accent:p.accent};
+  return [base,...colorPalette.filter(c=>c.name!==base.name).slice(0,5)];
 }
-
-function setFilter(category) {
-  activeFilter = category;
+function isFavorite(id){return favorites.includes(id);}
+function toggleFavorite(id){
+  favorites=isFavorite(id)?favorites.filter(x=>x!==id):[...favorites,id];
+  try{localStorage.setItem("flipflow-favorites",JSON.stringify(favorites));}catch(e){}
   renderProducts();
+  notify(isFavorite(id)?"Saved to your favorites ♥":"Removed from favorites");
+}
+function selectColor(id,name,upper,sole,accent,button){
+  selectedColors[id]={name,upper,sole,accent};
+  const p=products.find(x=>x.id===id);
+  if(!p)return;
+  const card=button.closest(".product");
+  card.querySelector(".product-image img").src=slideImage(upper,sole,accent,id%2?2:-2);
+  card.querySelector("#color-label-"+id).textContent=name;
+  card.querySelectorAll(".swatch").forEach(sw=>sw.classList.remove("selected"));
+  button.classList.add("selected");
 }
 
-// NOTIFICATIONS
-function notify(message) {
-  const element = document.getElementById("notice");
-  element.textContent = message;
-  element.classList.add("show");
+function renderProducts(){
+  const list=activeFilter==="All"?products:products.filter(p=>p.category===activeFilter);
+  document.getElementById("product-count").textContent=list.length+(list.length===1?" style":" styles");
+  document.querySelectorAll(".filter").forEach(b=>b.classList.toggle("active",b.dataset.filter===activeFilter));
+  document.getElementById("products").innerHTML=list.map(p=>{
+    const selected=selectedColors[p.id]||p;
+    return `
+      <article class="product">
+        <div class="product-image">
+          <img src="${slideImage(selected.upper,selected.sole,selected.accent)}" alt="${selected.name} ${p.name}, original FlipFlow design">
+          ${p.tag?`<span class="tag">${p.tag}</span>`:""}
+        </div>
+        <div class="product-info">
+          <h3>${p.name}</h3>
+          <p class="description">${p.description}<br><span id="color-label-${p.id}">${selected.name}</span></p>
+          <div class="swatches" aria-label="Choose color for ${p.name}">
+            ${getColorOptions(p).map(c=>`<button type="button" class="swatch ${c.name===selected.name?"selected":""}" style="background:${c.upper}" title="${c.name}" aria-label="${c.name}" onclick="selectColor(${p.id},'${c.name}','${c.upper}','${c.sole}','${c.accent}',this)"></button>`).join("")}
+          </div>
+          <div class="price">$${p.price.toFixed(2)}</div>
+          <select id="size-${p.id}" aria-label="Choose size for ${p.name}">
+            <option value="">Choose size</option>
+            ${[6,7,8,9,10,11,12].map(s=>`<option value="${s}">US ${s}</option>`).join("")}
+          </select>
+          <div class="product-actions">
+            <button class="add" onclick="addToCart(${p.id})">ADD TO BAG +</button>
+            <button class="favorite-btn ${isFavorite(p.id)?"saved":""}" onclick="toggleFavorite(${p.id})" aria-label="Save ${p.name}" title="Save favorite">${isFavorite(p.id)?"♥":"♡"}</button>
+          </div>
+        </div>
+      </article>`;
+  }).join("");
+}
+function setFilter(category){activeFilter=category;renderProducts();}
 
+function notify(message){
+  const el=document.getElementById("notice");
+  el.textContent=message;el.classList.add("show");
   clearTimeout(notify.timer);
-  notify.timer = setTimeout(() => {
-    element.classList.remove("show");
-  }, 2400);
+  notify.timer=setTimeout(()=>el.classList.remove("show"),2400);
 }
 
-// SHOPPING CART
-function addToCart(id) {
-  const product = products.find(p => p.id === id);
-  const size = document.getElementById("size-" + id).value;
-
-  if (!size) {
-    notify("Choose your size first!");
-    document.getElementById("size-" + id).focus();
-    return;
-  }
-
-  const existing = cart.find(item =>
-    item.id === id && item.size === size
-  );
-
-  if (existing) {
-    existing.qty++;
-  } else {
-    cart.push({...product, size, qty: 1});
-  }
-
-  updateCart();
-  notify(product.name + " added to your bag!");
+function addToCart(id){
+  const p=products.find(x=>x.id===id);
+  const size=document.getElementById("size-"+id).value;
+  if(!size){notify("Choose your size first!");document.getElementById("size-"+id).focus();return;}
+  const c=selectedColors[id]||p;
+  const existing=cart.find(i=>i.id===id&&i.size===size&&i.color===c.name);
+  if(existing)existing.qty++;
+  else cart.push({...p,size,color:c.name,upper:c.upper,sole:c.sole,accent:c.accent,image:slideImage(c.upper,c.sole,c.accent),qty:1});
+  updateCart();notify(p.name+" added to your bag!");
 }
-
-function updateCart() {
-  const count = cart.reduce((sum, item) => sum + item.qty, 0);
-  const subtotal = cart.reduce(
-    (sum, item) => sum + item.price * item.qty, 0
-  );
-
-  document.getElementById("cart-count").textContent = count;
-  document.getElementById("bag-count").textContent = "(" + count + ")";
-  document.getElementById("subtotal").textContent =
-    "$" + subtotal.toFixed(2);
-
-  const container = document.getElementById("cart-items");
-
-  if (!cart.length) {
-    container.innerHTML =
-      '<div class="empty">Your bag is empty.<br>Find your flow and add a pair!</div>';
-    return;
-  }
-
-  container.innerHTML = cart.map(item => `
+function updateCart(){
+  const count=cart.reduce((s,i)=>s+i.qty,0);
+  const subtotal=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  document.getElementById("cart-count").textContent=count;
+  document.getElementById("bag-count").textContent="("+count+")";
+  document.getElementById("subtotal").textContent="$"+subtotal.toFixed(2);
+  const fill=document.getElementById("shipping-fill");
+  const note=document.getElementById("shipping-note");
+  if(fill)fill.style.width=Math.min(100,subtotal/60*100)+"%";
+  if(note)note.textContent=subtotal>=60?"You've reached the $60 free-shipping demo goal!":"You're $"+(60-subtotal).toFixed(2)+" away from the $60 free-shipping demo goal.";
+  const box=document.getElementById("cart-items");
+  if(!cart.length){box.innerHTML='<div class="empty">Your bag is empty.<br>Find your flow and add a pair!</div>';return;}
+  box.innerHTML=cart.map(i=>`
     <div class="cart-item">
-      <img src="${item.image}" alt="${item.name}">
+      <img src="${i.image}" alt="${i.name}">
       <div>
-        <h4>${item.name}</h4>
-        <p>Size US ${item.size} · $${item.price.toFixed(2)}</p>
+        <h4>${i.name}</h4>
+        <p>${i.color} · Size US ${i.size} · $${i.price.toFixed(2)}</p>
         <div class="qty">
-          <button onclick="changeQty(${item.id}, '${item.size}', -1)">−</button>
-          <span>${item.qty}</span>
-          <button onclick="changeQty(${item.id}, '${item.size}', 1)">+</button>
+          <button onclick="changeQty(${i.id},'${i.size}',-1,'${i.color}')">−</button>
+          <span>${i.qty}</span>
+          <button onclick="changeQty(${i.id},'${i.size}',1,'${i.color}')">+</button>
         </div>
       </div>
-      <button class="remove"
-        onclick="removeItem(${item.id}, '${item.size}')">Remove</button>
-    </div>
-  `).join("");
+      <button class="remove" onclick="removeItem(${i.id},'${i.size}','${i.color}')">Remove</button>
+    </div>`).join("");
 }
-
-function changeQty(id, size, amount) {
-  const item = cart.find(p => p.id === id && p.size === size);
-  if (!item) return;
-
-  item.qty += amount;
-
-  if (item.qty <= 0) {
-    removeItem(id, size);
-  } else {
-    updateCart();
-  }
+function changeQty(id,size,amount,color){
+  const item=cart.find(i=>i.id===id&&i.size===size&&i.color===color);
+  if(!item)return;
+  item.qty+=amount;
+  if(item.qty<=0)removeItem(id,size,color);else updateCart();
 }
-
-function removeItem(id, size) {
-  cart = cart.filter(item =>
-    !(item.id === id && item.size === size)
-  );
+function removeItem(id,size,color){
+  cart=cart.filter(i=>!(i.id===id&&i.size===size&&i.color===color));
   updateCart();
 }
-
-function toggleCart(open) {
-  document.getElementById("cart-overlay")
-    .classList.toggle("open", open);
-
-  document.body.style.overflow = open ? "hidden" : "";
+function toggleCart(open){
+  document.getElementById("cart-overlay").classList.toggle("open",open);
+  document.body.style.overflow=open?"hidden":"";
 }
 
-// DEMO CHECKOUT
-function checkout() {
-  if (!cart.length) {
-    notify("Your bag is empty!");
-    return;
-  }
-
-  const total = cart.reduce(
-    (sum, item) => sum + item.price * item.qty, 0
-  );
-
-  document.getElementById("checkout-total").textContent =
-    "Demo order subtotal: $" + total.toFixed(2) +
-    ". No payment will be collected.";
-
+function checkout(){
+  if(!cart.length){notify("Your bag is empty!");return;}
+  const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  document.getElementById("checkout-total").textContent="Demo order subtotal: $"+total.toFixed(2)+". No payment will be collected.";
   document.getElementById("checkout-modal").classList.add("open");
 }
-
-function closeCheckout() {
-  document.getElementById("checkout-modal")
-    .classList.remove("open");
-}
-
-function placeDemoOrder() {
-  const name = document.getElementById("customer-name").value.trim();
-  const email = document.getElementById("customer-email").value.trim();
-  const address = document.getElementById("customer-address").value.trim();
-
-  if (!name || !email || !address) {
-    notify("Please fill in all checkout fields.");
-    return;
-  }
-
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    notify("Please enter a valid email address.");
-    return;
-  }
-
-  closeCheckout();
-  toggleCart(false);
+function closeCheckout(){document.getElementById("checkout-modal").classList.remove("open");}
+function placeDemoOrder(){
+  const name=document.getElementById("customer-name").value.trim();
+  const email=document.getElementById("customer-email").value.trim();
+  const address=document.getElementById("customer-address").value.trim();
+  if(!name||!email||!address){notify("Please fill in all checkout fields.");return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){notify("Please enter a valid email address.");return;}
+  closeCheckout();toggleCart(false);
   notify("Demo checkout complete! No real order or payment was created.");
 }
+document.getElementById("checkout-modal").addEventListener("click",e=>{if(e.target.id==="checkout-modal")closeCheckout();});
 
-// CLOSE CHECKOUT IF BACKGROUND IS CLICKED
-document.getElementById("checkout-modal").addEventListener("click", event => {
-  if (event.target.id === "checkout-modal") closeCheckout();
-});
-
-// INITIALIZE WEBSITE
-document.getElementById("year").textContent = new Date().getFullYear();
-renderProducts();
-updateCart();
-</script>
-</body>
-</html>
+let assistantMode="stylist";
+function openAssistant(mode){
+  assistantMode=mode||"stylist";
+  const panel=document.getElementById("ai-panel");
+  panel.classList.add("open");
+  const body=document.getElementById("ai-body");
+  if(assistantMode==="support"){
+    body.innerHTML=`<div class="ai-message">Hi! I'm the FlipFlow helper. I can answer general questions about sizes, shipping, returns, or help you find a pair. This is a demo assistant, so it can't see real orders or confirm store policies.</div><div class="ai-options"><button onclick="supportQuick('sizes')">Sizing</button><button onclick="supportQuick('shipping')">Shipping</button><button onclick="supportQuick('returns')">Returns</button><button onclick="startStylist()">Find my style</button></div>`;
+  }else{
+    body.innerHTML=`<div class="ai-message">Hey! I'm your FlipFlow AI stylist ✦ I'll help you choose a pair from our collection. What kind of slides are you looking for?</div><div class="ai-options"><button onclick="stylistAnswer('Everyday')">Everyday comfort</button><button onclick="stylistAnswer('Sport')">Sporty style</button><button onclick="stylistAnswer('Premium')">Premium look</button><button onclick="stylistAnswer('Budget')">Lowest price</button></div>`;
+  }
+}
+function closeAssistant(){document.getElementById("ai-panel").classList.remove("open");}
+function addAiMessage(text,user=false){
+  const body=document.getElementById("ai-body");
+  const div=document.createElement("div");
+  div.className="ai-message"+(user?" user":"");
+  div.textContent=text;
+  body.appendChild(div
