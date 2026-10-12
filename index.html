@@ -538,8 +538,9 @@ footer a:hover { color: var(--cyan); }
     <div class="feature-card">
       <div class="eyebrow">01 / FIND YOUR PAIR</div>
       <h3>Not sure what fits your vibe?</h3>
-      <p>Tell the stylist your budget, preferred look, and how you'll wear your slides. It will recommend a style from the six products in this store.</p>
+      <p>Tell the stylist your budget, preferred look, and how you'll wear your slides. Or open Color Studio to try custom colors and combinations instantly.</p>
       <button class="primary" onclick="openAssistant('stylist')">FIND MY SLIDES →</button>
+      <button class="dark-button" style="margin-top:12px" onclick="openAssistant('color')">🎨 OPEN AI COLOR STUDIO</button>
     </div>
     <div class="feature-card">
       <div class="eyebrow">02 / NEED A HAND?</div>
@@ -570,13 +571,13 @@ footer a:hover { color: var(--cyan); }
   <div class="feature-grid">
     <div class="feature-card">
       <h3>Send us a message</h3>
-      <p>Complete the form and your email app will open with your message ready to send. Add your real business email in the script before launching the store.</p>
+      <p>Complete the form and your email app will open with your message addressed to 31stvazn@dextersouthfield.org.</p>
       <form class="contact-form" id="contact-form" onsubmit="submitContact(event)">
         <div class="field"><label for="contact-name">Your name</label><input id="contact-name" required maxlength="80" placeholder="Name"></div>
         <div class="field"><label for="contact-email">Email address</label><input id="contact-email" type="email" required maxlength="120" placeholder="you@example.com"></div>
         <div class="field full"><label for="contact-topic">What can we help with?</label><select id="contact-topic"><option>Order question</option><option>Size and fit</option><option>Product question</option><option>Returns and exchanges</option><option>Feedback or other</option></select></div>
         <div class="field full"><label for="contact-message">Message</label><textarea id="contact-message" rows="4" required maxlength="1500" placeholder="Tell us how we can help..."></textarea></div>
-        <div class="field full"><button class="primary" type="submit">PREPARE MESSAGE ↗</button><p class="fine">This static HTML demo does not send or store messages by itself. Your email app will handle sending.</p></div>
+        <div class="field full"><button class="primary" type="submit">PREPARE MESSAGE ↗</button><p class="fine">Your email app must be configured to send. This static site cannot guarantee delivery or control the recipient's spam/junk folder.</p></div>
       </form>
     </div>
     <div class="feature-card">
@@ -897,9 +898,119 @@ function openAssistant(mode){
   }
 }
 function closeAssistant(){document.getElementById("ai-panel").classList.remove("open");}
-function addAiMessage(text,user=false){
+
+function startStylist(){
+  assistantMode="stylist";
+  const body=document.getElementById("ai-body");
+  body.innerHTML=`<div class="ai-message">Let's find your flow. What look do you want?</div>
+  <div class="ai-options">
+  <button onclick="stylistAnswer('Everyday')">Everyday comfort</button>
+  <button onclick="stylistAnswer('Sport')">Sporty style</button>
+  <button onclick="stylistAnswer('Premium')">Premium look</button>
+  <button onclick="stylistAnswer('Budget')">Lowest price</button>
+  <button onclick="openAssistant('color')">🎨 Change colors</button></div>`;
+}
+function stylistAnswer(choice){
+  addAiMessage(choice,true);
+  let matches=products.slice();
+  if(choice==="Everyday")matches=products.filter(p=>p.category==="Everyday");
+  else if(choice==="Sport")matches=products.filter(p=>p.category==="Sport");
+  else if(choice==="Premium")matches=products.filter(p=>p.category==="Premium");
+  else if(choice==="Budget")matches=[...products].sort((a,b)=>a.price-b.price).slice(0,2);
+  const body=document.getElementById("ai-body");
+  const intro=document.createElement("div");intro.className="ai-message";
+  intro.textContent="Here are a few picks from the FlipFlow collection:";
+  body.appendChild(intro);
+  matches.forEach(p=>{
+    const c=selectedColors[p.id]||p;
+    const card=document.createElement("div");card.className="ai-product";
+    const img=document.createElement("img");img.src=slideImage(c.upper,c.sole,c.accent);img.alt=p.name;
+    const info=document.createElement("div");info.style.flex="1";
+    const title=document.createElement("strong");title.textContent=p.name;
+    const detail=document.createElement("small");detail.textContent=c.name+" · $"+p.price.toFixed(2);
+    info.append(title,detail);
+    const btn=document.createElement("button");btn.textContent="View";btn.onclick=()=>{closeAssistant();document.getElementById("shop").scrollIntoView({behavior:"smooth"});};
+    card.append(img,info,btn);body.appendChild(card);
+  });
+  const opts=document.createElement("div");opts.className="ai-options";
+  opts.innerHTML=`<button onclick="openAssistant('color')">🎨 Customize colors</button><button onclick="startStylist()">Start over</button>`;
+  body.appendChild(opts);body.scrollTop=body.scrollHeight;
+}
+function openAssistant(mode){
+  assistantMode=mode||"stylist";
+  const panel=document.getElementById("ai-panel");
+  panel.classList.add("open");
+  const body=document.getElementById("ai-body");
+  if(assistantMode==="support"){
+    body.innerHTML=`<div class="ai-message">Hi! I'm the FlipFlow helper. I can answer general questions about sizes, shipping, returns, or help you find a pair. This demo can't see real orders or confirm policies.</div><div class="ai-options"><button onclick="supportQuick('sizes')">Sizing</button><button onclick="supportQuick('shipping')">Shipping info</button><button onclick="supportQuick('returns')">Returns</button><button onclick="startStylist()">Find my style</button><button onclick="openAssistant('color')">Color Studio</button></div>`;
+  } else if(assistantMode==="color"){
+    body.innerHTML=`<div class="ai-message">Welcome to Color Studio 🎨 Describe a color or combo, like “ocean blue”, “pink”, or “black”. This is a built-in color helper, not a live external AI service.</div>
+    <label for="ai-color-prompt" style="display:block;font-size:12px;font-weight:800;margin:10px 0 6px">Describe your color</label>
+    <input id="ai-color-prompt" placeholder="e.g. ocean blue, rose, black..." style="width:100%;padding:12px;border:1px solid #dfe3e6;border-radius:9px" onkeydown="if(event.key==='Enter')applyAiColor()">
+    <div class="ai-options" style="margin-top:10px"><button onclick="quickAiColor('Black')">Black</button><button onclick="quickAiColor('Cream')">Cream</button><button onclick="quickAiColor('Cyan')">Cyan</button><button onclick="quickAiColor('Rose')">Rose</button><button onclick="quickAiColor('Lilac')">Lilac</button><button onclick="quickAiColor('Navy')">Navy</button></div>
+    <label for="ai-color-product" style="display:block;font-size:12px;font-weight:800;margin:14px 0 6px">Apply to</label>
+    <select id="ai-color-product" style="width:100%;padding:11px;border:1px solid #dfe3e6;border-radius:9px">${products.map(p=>`<option value="${p.id}">${p.name}</option>`).join("")}</select>
+    <button class="primary" style="width:100%;margin-top:12px" onclick="applyAiColor()">APPLY COLOR ↗</button>
+    <div class="ai-options" style="margin-top:10px"><button onclick="applyCombo('Black','Cream')">Black + Cream</button><button onclick="applyCombo('Navy','Cyan')">Navy + Cyan</button><button onclick="applyCombo('Rose','Cream')">Rose + Cream</button><button onclick="startStylist()">Find a pair instead</button></div>`;
+  } else { startStylist();return; }
+}
+function closeAssistant(){document.getElementById("ai-panel").classList.remove("open");}
+function addAiMessage(message,user=false){
   const body=document.getElementById("ai-body");
   const div=document.createElement("div");
   div.className="ai-message"+(user?" user":"");
-  div.textContent=text;
-  body.appendChild(div
+  div.textContent=message;
+  body.appendChild(div);body.scrollTop=body.scrollHeight;
+}
+function findColor(name){
+  const n=name.toLowerCase();
+  const aliases={white:"Cream",ivory:"Cream",offwhite:"Cream",sand:"Beige",black:"Black",dark:"Black",blue:"Navy",navy:"Navy",ocean:"Navy",green:"Olive",olive:"Olive",pink:"Rose",rose:"Rose",purple:"Lilac",lavender:"Lilac",cyan:"Cyan",turquoise:"Cyan",teal:"Cyan",beige:"Beige"};
+  const key=Object.keys(aliases).find(k=>n.includes(k));
+  return colorPalette.find(c=>c.name===aliases[key])||colorPalette.find(c=>c.name.toLowerCase()===n)||null;
+}
+function quickAiColor(name){
+  const input=document.getElementById("ai-color-prompt");
+  if(input)input.value=name;
+  applyAiColor();
+}
+function applyAiColor(){
+  const input=document.getElementById("ai-color-prompt");
+  const prompt=(input?.value||"").trim();
+  const id=Number(document.getElementById("ai-color-product")?.value||1);
+  if(!prompt){notify("Type a color or choose a preset.");return;}
+  const color=findColor(prompt);
+  if(!color){addAiMessage("I couldn't match that yet. Try black, cream, beige, navy, olive, cyan, rose/pink, or lilac/purple.");return;}
+  selectedColors[id]={...color};
+  renderProducts();
+  addAiMessage("Applied "+color.name+" to "+products.find(p=>p.id===id).name+". The product preview has been updated.",true);
+}
+function applyCombo(first,second){
+  const a=findColor(first),b=findColor(second);
+  const id=Number(document.getElementById("ai-color-product")?.value||1);
+  if(!a||!b)return;
+  selectedColors[id]={name:a.name+" / "+b.name,upper:a.upper,sole:b.sole,accent:b.accent};
+  renderProducts();
+  addAiMessage("Applied a "+a.name+" strap with a "+b.name+" sole to "+products.find(p=>p.id===id).name+".",true);
+}
+function supportQuick(topic){
+  const answers={sizes:"The demo offers US sizes 6–12. Check the size guide before launching real sales.",shipping:"Shipping is not connected to a carrier in this demo. Add shipping rates and policies before accepting real orders.",returns:"Returns and exchanges are not configured yet. Publish a clear return policy before taking real orders."};
+  addAiMessage(answers[topic]||"Tell us what you need help with.");
+}
+function submitContact(event){
+  event.preventDefault();
+  const name=document.getElementById("contact-name").value.trim();
+  const email=document.getElementById("contact-email").value.trim();
+  const topic=document.getElementById("contact-topic").value;
+  const message=document.getElementById("contact-message").value.trim();
+  const recipient="31stvazn@dextersouthfield.org";
+  const subject=encodeURIComponent("FlipFlow Contact: "+topic);
+  const body=encodeURIComponent("Name: "+name+"\nReply email: "+email+"\nTopic: "+topic+"\n\nMessage:\n"+message);
+  notify("Opening your email app to send the message.");
+  window.location.href="mailto:"+recipient+"?subject="+subject+"&body="+body;
+}
+document.getElementById("year").textContent=new Date().getFullYear();
+renderProducts();
+updateCart();
+</script>
+</body>
+</html>
